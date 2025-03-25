@@ -32,7 +32,7 @@ export default function CameraStream() {
     const connectionStatus = ReadyState[readyState];
 
     return (
-        <Card className="w-full max-w-2xl mx-auto">
+        <Card className="w-full max-w-2xl">
             <CardHeader>
                 <CardTitle>JPEG Stream</CardTitle>
             </CardHeader>
