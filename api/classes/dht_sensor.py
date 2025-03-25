@@ -75,35 +75,3 @@ class DHTSensor:
             }
         except Exception as e:
             return {"error": str(e)}
-
-# Example usage in FastAPI:
-'''
-from fastapi import FastAPI, WebSocket
-
-app = FastAPI()
-dht_sensor = DHTSensor()
-
-@app.on_event("startup")
-async def startup_event():
-    await dht_sensor.start()
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    await dht_sensor.stop()
-
-@app.websocket("/api/sensor/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    dht_sensor.connections.add(websocket)
-    try:
-        while True:
-            await websocket.receive_text()
-    except Exception:
-        pass
-    finally:
-        dht_sensor.connections.remove(websocket)
-
-@app.get("/api/sensor/current")
-def get_current_data():
-    return dht_sensor.get_current_reading()
-'''
