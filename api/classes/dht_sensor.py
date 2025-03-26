@@ -34,13 +34,6 @@ class DHTSensor:
                     ]
                     await asyncio.gather(*tasks, return_exceptions=True)
                 
-                # Print for debugging
-                print(
-                    "Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(
-                        temperature_f, temperature_c, humidity
-                    )
-                )
-                
             except RuntimeError as error:
                 # Errors happen fairly often, DHT's are hard to read, just keep going
                 print(error.args[0])
