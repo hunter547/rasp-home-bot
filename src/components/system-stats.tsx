@@ -19,6 +19,12 @@ type SystemInfo = {
   };
 };
 
+function getCpuUsageColor(usage: number): "green" | "yellow" | "red" {
+  if (usage < 50) return "green";
+  if (usage < 80) return "yellow";
+  return "red";
+}
+
 export default function SystemStats() {
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -104,7 +110,11 @@ export default function SystemStats() {
                 <span>Core {index}</span>
                 <span>{usage}%</span>
               </div>
-              <Progress value={parseFloat(usage)} className="h-2" />
+              <Progress 
+                value={parseFloat(usage)} 
+                className="h-2" 
+                color={getCpuUsageColor(parseFloat(usage))}
+              />
             </div>
           ))}
         </div>
